@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title><%= blog.title %></title>
+    <style>
+        .blog-container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        .blog-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .blog-content {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+        .blog-description {
+            font-style: italic;
+            color: #555;
+            margin-top: 10px;
+        }
+        .comment-section {
+            margin-top: 40px;
+        }
+        .comment {
+            border-bottom: 1px solid #ddd;
+            padding: 10px 0;
+        }
+        .comment img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+        }
+        .comment-form textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="container mt-4">
+        <div class="blog-container">
+            <!-- Blog Title -->
+            <h1 class="mt-3"><%= blog.title %></h1>
+
+            <!-- Blog Cover Image -->
+            <img src="<%= blog.coverImageURL %>" alt="Blog Image" class="blog-image">
+
+            <!-- Blog Author -->
+            <div class="container mt-4 d-flex align-items-center">
+                <img src="<%= blog.createdBy.profileImageURL %>" width="50px" class="rounded-circle" />
+                <span class="ms-2"><%= blog.createdBy.fullName %></span>
+            </div>
+
+            <hr>
+
+            <!-- Blog Description -->
+            <p class="blog-description"><%= blog.description %></p>
+
+            <!-- Full Blog Content -->
+            <p class="blog-content"><%= blog.body.replace(/\r\n/g, "<br>") %></p>
+
+            <a href="/" class="btn btn-primary mt-3">Back to Home</a>
+
+            <!-- Comment Section -->
+            <div class="comment-section">
+                <h3>Comments</h3>
+            
+                
+             <div class="mt-3">
+                <% comments.forEach(comment => { %>
+                    <img src="<%= comment.createdBy.profileImageURL %>" width="20px" class="rounded-circle" />
+                    <span class="ms-2"><%= comment.createdBy.fullName %></span>: <pre> <%= comment.content %></pre>
+                       
+                    
+                <% }) %>
+             </div>
+
+              
+
+                <!-- Add Comment Form -->
+                 <% if (locals.user) { %>
+                    <form action="/blog/comment/<%= blog._id %>" method="POST" class="comment-form mt-3">
+                        <textarea name="content" class="form-control" placeholder="Write a comment..." required></textarea>
+                        <button type="submit" class="btn btn-primary mt-2">Post Comment</button>
+                    </form>
+                 <% } %>
+                
+            </div>
+        </div>
+    </div>
+
+    <%- include('./partials/script') %>
+</body>
+</html>

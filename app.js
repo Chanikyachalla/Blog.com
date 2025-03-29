@@ -26,7 +26,7 @@ app.set('view engine','ejs');
 app.set('viewa',Path.resolve("./views"));
 app.use(cookieParser());
 app.use(checkForAuthentication("token"));
-app.use(express.static('publi'));
+app.use(express.static('public'));
 
 app.get('/', async(req,res)=>{
     const allBlogs= await Blog.find({});
@@ -42,3 +42,4 @@ app.use("/user" ,  userRouter);
 app.listen(PORT, ()=>{
     console.log(`server started at PORT:${PORT}`);
 });
+

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <%- include('./partials/head')  %>
+    <title>Signup</title>
+    
+</head>
+<body>
+    <%- include('./partials/nav') %>
+  <div class="box">
+    <div class="container">
+        <form action=" /user/signup" method="post">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Full Name</label>
+            <input type="text"  name = "fullName" class="form-control" id="fullName" aria-describedby="fullNmae">
+          
+          </div>
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Email address</label>
+              <input type="email" name = "email" class="form-control" id="email" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Password</label>
+              <input type="password" name = "password" class="form-control" id="password">
+            </div>
+          
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+    </div>
+  </div>
+
+
+  <%- include('./partials/script') %> 
+   
+</body>
+<style>
+/* Ensure navbar spans full width */
+.navbar {
+    width: 100%;
+    position: fixed; /* Keeps it at the top while scrolling */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Ensures it's above other elements */
+    background-color: #ffffff; /* Change as needed */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds slight shadow */
+}
+
+/* Body layout to prevent overlapping */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #f8f9fa; /* Light background for contrast */
+    min-height: 100vh;
+    padding-top: 60px; /* Adjust based on navbar height to prevent overlap */
+}
+
+/* Center the form box */
+.box {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 24px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px; /* Consistent width */
+    margin-top: 5vh; /* Keeps some spacing */
+}
+
+/* Ensure form layout remains clean */
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+</style>
+</html>

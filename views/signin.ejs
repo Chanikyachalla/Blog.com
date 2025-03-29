@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Signin</title>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+
+    <div class="box">
+        <% if (locals.error) { %>
+            <div class="alert alert-danger error-box alert-dismissible fade show" role="alert">
+                <%= locals.error %>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close" onclick="closeError()"></button>
+            </div>
+        <% } %>
+
+        <div class="container">
+            <form action="/user/signin" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" name="password" class="form-control" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+
+    <%- include('./partials/script') %> 
+
+    <script>
+        function closeError() {
+            document.querySelector('.error-box').style.display = 'none';
+        }
+    </script>
+</body>
+
+<style>
+/* Navbar stays fixed at the top */
+.navbar {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Prevent overlap with navbar */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+    padding-top: 60px;
+}
+
+/* Center the form box */
+.box {
+    border: 2px solid black;
+    border-radius: 8px;
+    padding: 24px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    margin-top: 5vh;
+    position: relative;
+}
+
+/* Style for error message */
+.error-box {
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    background-color: #dc3545;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 15px;
+    position: relative;
+}
+
+/* Style for the close button */
+
+</style>
+</html>
